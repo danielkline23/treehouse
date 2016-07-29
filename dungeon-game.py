@@ -64,17 +64,39 @@ def get_moves(player):
 
     return moves
 
+def draw_map(player):
+    print ' _ _ _ _ _'
+    tile = '|{}'
+
+    for idx, cell in enumerate(CELLS):
+        if idx in [0,1,2,3,5,6,7,8,10,11,12,13,15,16,17,18,20,21,22,23]:
+            if cell == player:
+                print tile.format('X'),
+            else:
+                print tile.format('_'),
+        else:
+            if cell == player:
+                print tile.format('X|')
+            else:
+                print tile.format('_|')
+
+
 monster, door, player = get_locations()
+print "Welcome to the dungeon!"
+
 
 while True:
     moves = get_moves(player)
-    print "Welcome to the dungeon!"
+
     print "You're currently in room {}".format(player)
+    draw_map(player)
+
     print 'You can move {}'.format(moves)
     print 'Enter QUIT to quit'
 
     move = raw_input('> ')
     move = move.upper()
+
 
     if move =='QUIT':
         break
@@ -91,3 +113,7 @@ while True:
     elif player == monster:
         print 'You were eaten by the GRU!'
         break
+
+
+
+#check out flush
